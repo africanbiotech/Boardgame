@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: boardgame-app
+  namespace: devops-demo
+  labels:
+    app: boardgame
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: boardgame
+
+  template:
+    metadata:
+      labels:
+        app: boardgame
+
+    spec:
+      serviceAccountName: app-sa
+
+      containers:
+      - name: boardgame-container
+        image: mydockerhub/boardgame:latest
+
+        ports:
+        - containerPort: 8080
+
+        resources:
+          requests:
+            cpu: "200m"
+            memory: "256Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+
+        env:
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: password
+
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+
+
+
+          
+
+
+
+
+
+

@@ -1,0 +1,13 @@
+| Field      | Meaning                |
+| ---------- | ---------------------- |
+| apiVersion | Kubernetes API version |
+| kind       | Type of resource       |
+| metadata   | Resource metadata      |
+| name       | Namespace name         |
+
+
+
+
+
+
+

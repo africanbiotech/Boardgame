@@ -1,0 +1,81 @@
+# apiVersion: is the API group used for deployments
+
+Examples
+| Resource   | API Version          |
+| ---------- | -------------------- |
+| Pod        | v1                   |
+| Service    | v1                   |
+| Deployment | apps/v1              |
+| Ingress    | networking.k8s.io/v1 |
+
+# kind: Defines the resource type.
+
+Examples: 
+kind: Deployment
+
+Other types: 
+Service
+Pod
+ConfigMap
+Secret
+Ingress
+
+#replicas: Number of running pods.
+replicas: 3
+
+# selector: Used by Kubernetes to match pods.
+selector:
+  matchLabels:
+    app: boardgame
+
+# Template: Defines the pod specification
+Inside template we define:
+containers
+resources
+probes
+env variables
+
+# ressorce: Prevents container resource exhaustion.
+resources:
+  requests:
+    cpu: "200m"
+    memory: "256Mi"
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
+
+| Type     | Meaning           |
+| -------- | ----------------- |
+| requests | minimum resources |
+| limits   | maximum resources |
+
+Example:
+500m CPU = 0.5 CPU
+
+# Liveness Probe: Health Checks, Checks if container is alive.
+Example:
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 8080
+
+If it fails: 
+Kubernetes restarts container
+
+# Readiness Probe: Health Checks, Checks if container is ready to receive traffic.
+Example:
+readinessProbe:
+  httpGet:
+    path: /ready
+    port: 8080
+
+If it fails: 
+Pod removed from load balancer
+
+
+
+
+
+
+
+

@@ -1,0 +1,10 @@
+| Type         | Description         |
+| ------------ | ------------------- |
+| ClusterIP    | internal service    |
+| NodePort     | external via node   |
+| LoadBalancer | cloud load balancer |
+
+
+
+
+

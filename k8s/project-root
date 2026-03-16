@@ -1,0 +1,24 @@
+project-root
+│
+├── app/
+│
+├── docker/
+│   └── Dockerfile
+│
+├── k8s/
+│   ├── namespace.yaml
+│   ├── deployment.yaml
+│   ├── service.yaml
+│   ├── ingress.yaml
+│   ├── secrets.yaml
+│   ├── rbac.yaml
+│   ├── configmap.yaml
+│   └── resourcequota.yaml
+│
+├── Jenkinsfile
+│
+└── terraform/ (optional if infra is automated)
+
+
+
+
